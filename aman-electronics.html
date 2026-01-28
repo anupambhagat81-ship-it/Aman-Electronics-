@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman Electronics - Innovation in Technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0e27;
+            --accent-cyan: #00fff5;
+            --accent-orange: #ff6b35;
+            --accent-purple: #7b2cbf;
+            --text-light: #e0e6ed;
+            --text-dim: #8892a6;
+            --card-bg: rgba(15, 25, 50, 0.6);
+            --glow-cyan: rgba(0, 255, 245, 0.3);
+            --glow-orange: rgba(255, 107, 53, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--primary);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(123, 44, 191, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 245, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 60%);
+            animation: bgShift 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        /* Header */
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 245, 0.1);
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 8px var(--glow-cyan)); }
+            50% { filter: drop-shadow(0 0 16px var(--glow-orange)); }
+        }
+        
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-orange));
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5% 8%;
+            gap: 4rem;
+        }
+        
+        .hero-content {
+            flex: 1;
+            animation: fadeInLeft 1s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+        
+        .hero .highlight {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Work Sans', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--primary);
+            box-shadow: 0 8px 25px rgba(0, 255, 245, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 255, 245, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-cyan);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--glow-cyan);
+        }
+        
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .circuit-board {
+            width: 100%;
+            height: 500px;
+            background: 
+                linear-gradient(90deg, transparent 98%, rgba(0, 255, 245, 0.15) 100%),
+                linear-gradient(0deg, transparent 98%, rgba(0, 255, 245, 0.15) 100%);
+            background-size: 40px 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .circuit-board::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+            opacity: 0.2;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.2; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+        }
+        
+        .device-icon {
+            font-size: 12rem;
+            position: relative;
+            z-index: 2;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 8%;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(0, 255, 245, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--glow-cyan) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.15;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 50px rgba(0, 255, 245, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-card p {
+            color: var(--text-dim);
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 6rem 8%;
+            background: linear-gradient(180deg, transparent, rgba(15, 25, 50, 0.4));
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-orange);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(123, 44, 191, 0.3), rgba(0, 255, 245, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .product-info p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .product-price {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 8%;
+        }
+        
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 245, 0.2);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            background: rgba(10, 14, 39, 0.6);
+            border: 1px solid rgba(0, 255, 245, 0.2);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--glow-cyan);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 8%;
+            background: rgba(5, 10, 25, 0.8);
+            border-top: 1px solid rgba(0, 255, 245, 0.1);
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-cyan);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 3rem 5%;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .circuit-board {
+                height: 300px;
+            }
+            
+            .device-icon {
+                font-size: 6rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grain"></div>
+    
+    <header>
+        <div class="logo">AMAN</div>
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#services">SERVICES</a>
+            <a href="#products">PRODUCTS</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>POWERING THE FUTURE</h1>
+                <p class="subtitle">
+                    Experience cutting-edge electronics and technology solutions. 
+                    We deliver <span class="highlight">innovation</span>, <span class="highlight">quality</span>, 
+                    and <span class="highlight">excellence</span> in every product.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#products" class="btn btn-primary">EXPLORE PRODUCTS</a>
+                    <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="circuit-board">
+                    <div class="device-icon">⚡</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="services" id="services">
+            <h2 class="section-title">OUR SERVICES</h2>
+            <p class="section-subtitle">Comprehensive electronics solutions for all your needs</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Expert Repairs</h3>
+                    <p>Professional repair services for all electronic devices. Fast turnaround, genuine parts, and certified technicians ensure your devices work like new.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>Retail & Sales</h3>
+                    <p>Wide range of consumer electronics, home appliances, and gadgets from leading brands. Competitive pricing and authentic products guaranteed.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>Technical Consultation</h3>
+                    <p>Get expert advice on electronics purchases, system integration, and technology upgrades. We help you make informed decisions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3>Installation Services</h3>
+                    <p>Professional installation of home theater systems, smart home devices, and electronic appliances with precision and care.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Maintenance Plans</h3>
+                    <p>Comprehensive maintenance packages to keep your electronics running smoothly. Regular check-ups and preventive care included.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Custom Solutions</h3>
+                    <p>Tailored electronics solutions for businesses and homes. From automation to specialized equipment, we deliver custom builds.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="products" id="products">
+            <h2 class="section-title">FEATURED PRODUCTS</h2>
+            <p class="section-subtitle">Top-quality electronics at competitive prices</p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">📱</div>
+                    <div class="product-info">
+                        <h3>Smartphones</h3>
+                        <p>Latest flagship and mid-range smartphones from top brands</p>
+                        <div class="product-price">From ₹15,999</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💻</div>
+                    <div class="product-info">
+                        <h3>Laptops</h3>
+                        <p>High-performance laptops for work, gaming, and creativity</p>
+                        <div class="product-price">From ₹35,999</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">📺</div>
+                    <div class="product-info">
+                        <h3>Smart TVs</h3>
+                        <p>4K and 8K smart TVs with immersive viewing experience</p>
+                        <div class="product-price">From ₹25,999</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎧</div>
+                    <div class="product-info">
+                        <h3>Audio Devices</h3>
+                        <p>Premium headphones, speakers, and sound systems</p>
+                        <div class="product-price">From ₹2,999</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🏠</div>
+                    <div class="product-info">
+                        <h3>Home Appliances</h3>
+                        <p>Refrigerators, washing machines, and kitchen appliances</p>
+                        <div class="product-price">From ₹12,999</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎮</div>
+                    <div class="product-info">
+                        <h3>Gaming</h3>
+                        <p>Gaming consoles, accessories, and peripherals</p>
+                        <div class="product-price">From ₹8,999</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact" id="contact">
+            <h2 class="section-title">GET IN TOUCH</h2>
+            <p class="section-subtitle">We'd love to hear from you</p>
+            <div class="contact-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo">AMAN</div>
+                <p style="color: var(--text-dim); margin-top: 0.5rem;">Electronics & Technology</p>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#products">Products</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="LinkedIn">💼</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Aman Electronics. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form submission handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+        
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.service-card, .product-card').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
